@@ -1,0 +1,12 @@
+127.0.0.1 - - [16/Mar/2019:02:36:31 +0900] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [16/Mar/2019:02:36:33 +0900] "GET /lb/views/product/productListView.jsp HTTP/1.1" 200 6862
+0:0:0:0:0:0:0:1 - - [16/Mar/2019:02:36:34 +0900] "GET /lb/file/product/navyproduct.PNG HTTP/1.1" 200 281118
+0:0:0:0:0:0:0:1 - - [16/Mar/2019:02:36:34 +0900] "GET /lb/resources/css/productPagination.css HTTP/1.1" 200 588
+0:0:0:0:0:0:0:1 - - [16/Mar/2019:02:36:34 +0900] "GET /favicon.ico HTTP/1.1" 404 1085
+127.0.0.1 - - [16/Mar/2019:02:38:15 +0900] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [16/Mar/2019:02:38:20 +0900] "GET /lb/views/product/productListView.jsp HTTP/1.1" 200 6862
+0:0:0:0:0:0:0:1 - - [16/Mar/2019:02:38:20 +0900] "GET /favicon.ico HTTP/1.1" 404 1085
+127.0.0.1 - - [16/Mar/2019:02:42:06 +0900] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [16/Mar/2019:02:42:09 +0900] "GET /lb/views/admin/productInsert.jsp HTTP/1.1" 200 6132
+0:0:0:0:0:0:0:1 - - [16/Mar/2019:02:42:09 +0900] "GET /lb/resources/css/productadmin.css HTTP/1.1" 200 511
+0:0:0:0:0:0:0:1 - - [16/Mar/2019:02:42:09 +0900] "GET /favicon.ico HTTP/1.1" 404 1085
