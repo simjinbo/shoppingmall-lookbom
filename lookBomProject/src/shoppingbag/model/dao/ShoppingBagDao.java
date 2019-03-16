@@ -54,14 +54,13 @@ public class ShoppingBagDao {
 	}
 	
 	//장바구니 상품 수량 업데이트
-	public int updateQuantity(Connection conn, int sbno, int updatespq) { 
+	public int updateQuantity(Connection conn, int sbno, int productquantity) { 
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = "UPDATE SHOPPING_BAG SET SB_PRODUCT_QUANTITY = ? WHERE SB_NO = ?";
-		System.out.println(updatespq);
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, updatespq);
+			pstmt.setInt(1, productquantity);
 			pstmt.setInt(2, sbno);
 			
 			result = pstmt.executeUpdate();
@@ -72,6 +71,5 @@ public class ShoppingBagDao {
 			close(pstmt);
 		}
 		return result;
-	}
-	
+	}	
 }

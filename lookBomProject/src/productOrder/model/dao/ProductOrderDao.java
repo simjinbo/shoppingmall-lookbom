@@ -41,6 +41,7 @@ public class ProductOrderDao {
 		return listCount;
 	}
 	
+	//주문내역리스트
 	public int getProductOrderListCount(Connection conn) {
 		int listCount = 0;
 		Statement stmt = null;
