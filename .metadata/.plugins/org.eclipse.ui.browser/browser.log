@@ -4,3 +4,6 @@
 
 3월 16, 2019 02:42:12.74 NEW SESSION
 3월 16, 2019 02:42:12.74 [2016:396:0316/024212.736:ERROR:browser_process_sub_thread.cc(209)] Waited 40 ms for network service
+
+3월 18, 2019 18:15:51.80 NEW SESSION
+3월 18, 2019 18:15:51.80 [4896:1456:0318/181551.798:ERROR:browser_process_sub_thread.cc(209)] Waited 69 ms for network service
