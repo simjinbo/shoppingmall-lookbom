@@ -19,7 +19,7 @@ public class ProductOrderList implements Serializable {
 	private String productName;				//상품이름
 	private String productColor;			//색상
 	private String orderProductSize;		//상품사이즈
-	private String orderProductQuantity;	//상품수량
+	private int orderProductQuantity;		//상품수량
 	private int productPrice;				//판매가
 	private double discountRate;			//할인률
 	private int orderTotalPrice;			//총결제금액
@@ -29,7 +29,7 @@ public class ProductOrderList implements Serializable {
 
 	public ProductOrderList(int orderNo, int orderProductBundle, Date orderDate, int userNo, int productNo,
 			int productDetailNo, String productImage5, String productName, String productColor, String orderProductSize,
-			String orderProductQuantity, int productPrice, double discountRate, int orderTotalPrice,
+			int orderProductQuantity, int productPrice, double discountRate, int orderTotalPrice,
 			String orderProgress, String orderDecision, String reviewYn) {
 		super();
 		this.orderNo = orderNo;
@@ -171,13 +171,13 @@ public class ProductOrderList implements Serializable {
 
 
 
-	public String getOrderProductQuantity() {
+	public int getOrderProductQuantity() {
 		return orderProductQuantity;
 	}
 
 
 
-	public void setOrderProductQuantity(String orderProductQuantity) {
+	public void setOrderProductQuantity(int orderProductQuantity) {
 		this.orderProductQuantity = orderProductQuantity;
 	}
 

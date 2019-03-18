@@ -14,17 +14,17 @@ public class ShoppingBagService {
 	public ShoppingBagService() {}
 	
 	//장바구니 리스트 출력
-	public ArrayList<ShoppingBagList> shoppingBagList() {
+	public ArrayList<ShoppingBagList> selectSbList() {
 		Connection conn = getConnection();
-		ArrayList<ShoppingBagList> list = sbdao.shoppingBagList(conn);
+		ArrayList<ShoppingBagList> list = sbdao.selectSbList(conn);
 		close(conn);
 		return list;
 	}
 	
 	//장바구니 상품 수량 업데이트
-	public int updateQuantity(int sbno, int updatespq) {
+	public int updateQuantity(int sbno, int productquantity) {
 		Connection conn = getConnection();
-		int result = sbdao.updateQuantity(conn, sbno, updatespq);
+		int result = sbdao.updateQuantity(conn, sbno, productquantity);
 		if(result > 0) {
 			commit(conn);
 		} else {

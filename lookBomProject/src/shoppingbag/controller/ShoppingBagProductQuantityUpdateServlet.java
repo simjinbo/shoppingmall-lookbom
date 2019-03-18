@@ -34,16 +34,13 @@ public class ShoppingBagProductQuantityUpdateServlet extends HttpServlet {
 		// 장바구니 상품 수량 업데이트 컨트롤러
 		
 		int sbno = Integer.parseInt(request.getParameter("sbno"));
-		int sbpq = Integer.parseInt(request.getParameter("productquantity"));
-		int cal = Integer.parseInt(request.getParameter("cal"));
-		
-		int updatespq = sbpq+cal;
-		
-		int result = new ShoppingBagService().updateQuantity(sbno, updatespq);
+		int productquantity = Integer.parseInt(request.getParameter("productquantity"));
+
+		int result = new ShoppingBagService().updateQuantity(sbno, productquantity);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter client = response.getWriter();
-		client.write(String.valueOf(updatespq));
+		client.write(String.valueOf(productquantity));
 		client.flush();
 		client.close();
 		
