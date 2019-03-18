@@ -13,7 +13,7 @@ import shoppingbag.model.vo.ShoppingBagList;
 public class ShoppingBagDao {
 	
 	//장바구니 리스트 출력
-	public ArrayList<ShoppingBagList> shoppingBagList(Connection conn) {
+	public ArrayList<ShoppingBagList> selectSbList(Connection conn) {
 		ArrayList<ShoppingBagList> list = new ArrayList<ShoppingBagList>();
 		Statement stmt = null;
 		ResultSet rset = null;

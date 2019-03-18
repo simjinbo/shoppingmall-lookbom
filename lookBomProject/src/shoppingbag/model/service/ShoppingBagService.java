@@ -14,9 +14,9 @@ public class ShoppingBagService {
 	public ShoppingBagService() {}
 	
 	//장바구니 리스트 출력
-	public ArrayList<ShoppingBagList> shoppingBagList() {
+	public ArrayList<ShoppingBagList> selectSbList() {
 		Connection conn = getConnection();
-		ArrayList<ShoppingBagList> list = sbdao.shoppingBagList(conn);
+		ArrayList<ShoppingBagList> list = sbdao.selectSbList(conn);
 		close(conn);
 		return list;
 	}

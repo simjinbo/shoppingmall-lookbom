@@ -164,7 +164,7 @@ public class ProductOrderDao {
 				polist.setProductName(rset.getString("PRODUCT_NAME"));
 				polist.setProductColor(rset.getString("PRODUCT_COLOR"));
 				polist.setOrderProductSize(rset.getString("ORDER_PRODUCT_SIZE"));
-				polist.setOrderProductQuantity(rset.getString("ORDER_PRODUCT_QUANTITY"));
+				polist.setOrderProductQuantity(rset.getInt("ORDER_PRODUCT_QUANTITY"));
 				polist.setProductPrice(rset.getInt("PRODUCT_PRICE"));
 				polist.setDiscountRate(rset.getDouble("DISCOUNT_RATE"));
 				polist.setOrderTotalPrice(rset.getInt("ORDER_TOTAL_PRICE"));
