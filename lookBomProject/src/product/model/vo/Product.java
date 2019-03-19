@@ -11,7 +11,7 @@ public class Product implements Serializable{
 	private String productName; //상품이름
     private String productType; //상품분류
     private String brand; //브랜드
-    private String brandImage; //브랜드이미지
+    private String brand_image; //브랜드이미지
     private String season; //시즌
     private String sex; //성별
     private int productPrice; //판매가
@@ -33,7 +33,7 @@ public class Product implements Serializable{
 		this.productName = productName;
 		this.productType = productType;
 		this.brand = brand;
-		this.brandImage = brand_image;
+		this.brand_image = brand_image;
 		this.season = season;
 		this.sex = sex;
 		this.productPrice = productPrice;
@@ -78,12 +78,12 @@ public class Product implements Serializable{
 		this.brand = brand;
 	}
 
-	public String getBrandImage() {
-		return brandImage;
+	public String getBrand_image() {
+		return brand_image;
 	}
 
-	public void setBrandImage(String brandImage) {
-		this.brandImage = brandImage;
+	public void setBrand_image(String brand_image) {
+		this.brand_image = brand_image;
 	}
 
 	public String getSeason() {
@@ -172,7 +172,7 @@ public class Product implements Serializable{
     
     @Override
     public String toString() {   
-    	return this.productNo+", "+this.productName+", "+this.productType+", "+this.brand+", "+this.brandImage+", "+
+    	return this.productNo+", "+this.productName+", "+this.productType+", "+this.brand+", "+this.brand_image+", "+
     			this.season+", "+this.sex+", "+this.productPrice+", "+this.discountRate+", "+this.sizeCategory+", "+this.sizeContents+", "+
     			this.moreInto+", "+this.viewCount+", "+this.resiter+", "+this.productLike;
     }

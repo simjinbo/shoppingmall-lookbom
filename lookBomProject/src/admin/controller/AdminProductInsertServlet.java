@@ -1,4 +1,4 @@
-package product.controller;
+package admin.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,21 +22,21 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import product.model.service.ProductService;
-import product.model.vo.Product;
-import product.model.vo.ProductDetail;
+import admin.model.service.AdminService;
+import admin.model.vo.Product;
+import admin.model.vo.ProductDetail;
 
 /**
  * Servlet implementation class ProductInsertServlet
  */
-@WebServlet("/pinsert")
-public class ProductInsertServlet extends HttpServlet {
+@WebServlet("/apinsert")
+public class AdminProductInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductInsertServlet() {
+    public AdminProductInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -68,16 +68,24 @@ public class ProductInsertServlet extends HttpServlet {
 		 product.setProductType(mrequest.getParameter("producttype"));
 		 product.setBrand(mrequest.getParameter("brand"));
 		 
-		 String[] filenameArray = new String[50];
+		 String[] filenameArr = new String[50];
 		 int index =0;
 				 
          Enumeration fileNames = mrequest.getFileNames();        
          while(fileNames.hasMoreElements()) {        
         	 String parameter= (String)fileNames.nextElement();
         	 String filename = mrequest.getFilesystemName(parameter);     
-        	 filenameArray[index++] = filename;
+        	 filenameArr[index] = filename;
+        	 index++;
          }        
-        
+         
+         String[] filenameArray = new String[50];
+         int index2 = 0;
+         for(int i = index-1;i >=0; i--) {
+         filenameArray[index2] = filenameArr[i];
+         index2++;
+         }
+         
 		 if(filenameArray[0] != null) {
 			 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			 String rebrandImage = sdf.format(new java.sql.Date(System.currentTimeMillis())) +"."+filenameArray[0].substring(filenameArray[0].lastIndexOf(".")+1);
@@ -102,7 +110,7 @@ public class ProductInsertServlet extends HttpServlet {
 				 brandImageFile.delete();
 			 }
 			 
-			 product.setBrandImage(rebrandImage);
+			 product.setBrand_image(rebrandImage);
 		 }
 		 
 	     product.setSeason(mrequest.getParameter("season"));
@@ -111,12 +119,20 @@ public class ProductInsertServlet extends HttpServlet {
 		 product.setDiscountRate(Double.parseDouble(mrequest.getParameter("discountrate")));
 		 
 			String[] sizecategory = mrequest.getParameterValues("sizecategory");	
+		
 			product.setSizeCategory(String.join(",", sizecategory));
 			String[] sizecontents = mrequest.getParameterValues("sizecontents");
+			
+		    for(int i =0; i<sizecontents.length;i++) {
+			if(sizecontents[i]==null)
+				sizecontents[i]=" ";
+			    System.out.println(sizecontents[i]);
+		    }				
+		    
 		   product.setSizeContents(String.join(",", sizecontents));
 		   product.setMoreInto(mrequest.getParameter("moreinfo"));	
 		   
-		  ProductService pservice = new ProductService();
+		  AdminService pservice = new AdminService();
 		  int result1 = pservice.insertProduct(product);
 		  
 		  int productNo = pservice.getProductNo(mrequest.getParameter("productname"));
@@ -215,8 +231,8 @@ public class ProductInsertServlet extends HttpServlet {
 			 }
 			 
 			 if(filenameArray[5*i+4] != null) {
-				 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-				 String reproductImage4 = sdf.format(new java.sql.Date(System.currentTimeMillis()))+(5*i+4)+"."+filenameArray[5*i+4].substring(filenameArray[i+4].lastIndexOf(".")+1);
+				 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");				 
+				 String reproductImage4 = sdf.format(new java.sql.Date(System.currentTimeMillis()))+(5*i+4)+"."+filenameArray[5*i+4].substring(filenameArray[5*i+4].lastIndexOf(".")+1);
 				 			
 				 File productImage4File= new File(savePath + "\\" + filenameArray[5*i+4]);
 				 File reproductImage4File = new File(savePath + "\\" + reproductImage4);
@@ -242,7 +258,7 @@ public class ProductInsertServlet extends HttpServlet {
 			 }
 			 
 			 if(filenameArray[5*i+5] != null) {
-				 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");				
 				 String reproductImage5 = sdf.format(new java.sql.Date(System.currentTimeMillis()))+(5*i+5)+"."+filenameArray[5*i+5].substring(filenameArray[5*i+5].lastIndexOf(".")+1);
 				 			
 				 File productImage5File= new File(savePath + "\\" + filenameArray[5*i+5]);
@@ -276,7 +292,13 @@ public class ProductInsertServlet extends HttpServlet {
 			  result2 = pservice.insertProductDetail(productDetail, productNo);
 		 }
 		 
-	
+	    if(result2 >0) {
+	    	response.sendRedirect("views/admin/adminProductListView.jsp");
+	    }else {
+	    	view = request.getRequestDispatcher("views/admin/adminError.jsp");
+	    	request.setAttribute("message", "상품 등록 실패");
+			view.forward(request, response);
+	    }
 		 
 		 
 	}
