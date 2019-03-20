@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\workspace\lookBomProject\web" path="/lb" reloadable="true" source="org.eclipse.jst.jee.server:lookBomProject" workDir="C:\workspace\lookBomProject\web\WEB-INF\jspwork">
+      <Context docBase="C:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\workspace\lookBomProject\web" path="/lb" reloadable="true" source="org.eclipse.jst.jee.server:lookBomProject" workDir="C:\user122\5_SERVER_기술\server_workspace\lookBomProject\web\WEB-INF\jspwork">
 
     <!-- Default set of monitored resources -->
 	<WatchedResource>WEB-INF/web.xml</WatchedResource>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <%@ page import = "member.model.vo.Member, search.model.vo.Search" %>
+  <%@ page import = "user.model.vo.LookBomUser, search.model.vo.Search" %>
     <%
-    Member loginUser = (Member)session.getAttribute("loginUser");
+    LookBomUser loginUser = (LookBomUser)session.getAttribute("loginUser");
     Search search = (Search)session.getAttribute("search");
     %>
 <!DOCTYPE html>

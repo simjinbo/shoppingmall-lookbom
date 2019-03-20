@@ -31,7 +31,7 @@ public class ReviewService {
 	}
 	
 	public void addLikeCount(int reviewLike) {
-		null
+
 	}
 	
 	public int insertReview(Review review) {

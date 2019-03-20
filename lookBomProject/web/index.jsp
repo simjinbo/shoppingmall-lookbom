@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%--     <%@page import="member.model.vo.Member" %>
-    <%
-    Member loginUser = (Member)session.getAttribute("loginUser");
-    %> --%>
+    pageEncoding="UTF-8"%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -183,11 +179,7 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 <body style="margin:0px; padding:0px;">
 <%@ include file="views/common/header.jsp" %>
 <br><br><br><br><br><br><br><br><br><br>
-<%-- <% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
-	<%@ include file="views/common/adminHeader.jsp" %>
-<% }else{ %>
-	<%@ include file="views/common/header.jsp" %>
-<% } %> --%>
+
 
 
 <ul class="slides">
@@ -266,21 +258,6 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
       <label for="img-6" class="nav-dot" id="img-dot-6"></label>
     </li>
 </ul>
-<!-- 메인 포스트 수정버튼 관리자일때만 -->
-<%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
-<button value="수정하기"><a href="#"></a></button>
-<%} %>
-<button value="pupBtn"><a href="views/adminMain/mainPostUpdate.jsp">수정하기</a></button>
-
-<a href="views/common/header.jsp">헤더</a>
-<a href="views/common/adminHeader.jsp">관리자헤더</a>
-<a href="views/side/side1.jsp">사이드1</a>
-<a href="views/side/side2.jsp">사이드2</a>
-<a href="views/side/side3.jsp">사이드3</a>
-<a href="views/side/side4.jsp">사이드4</a>
-<a href="views/side/side5.jsp">사이드5</a>
-<br>
-<br>
 
 
 <!-- Best 남/여 구분버튼 -->

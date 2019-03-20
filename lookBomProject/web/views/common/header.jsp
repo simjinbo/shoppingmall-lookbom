@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import = "member.model.vo.Member, search.model.vo.Search" %>
+    <%@ page import = "user.model.vo.LookBomUser, search.model.vo.Search" %>
     <%
-    Member loginUser = (Member)session.getAttribute("loginUser");
+     LookBomUser loginUser = (LookBomUser)session.getAttribute("loginUser");
     Search search = (Search)session.getAttribute("search");
     %>
 <!DOCTYPE html>
@@ -290,7 +290,7 @@
 <div class="topbar">
 	<div class="topbar" id="loginUser" style="background: pink; height: 50px;; width: 300px;"><!-- 로그인시 유저명이랑 포인트  -->
 		<%if(loginUser != null) {%>
-		<h3>이름 : <%=loginUser.getUserName() %></h3>&nbsp;&nbsp;	<h3>포인트 : <%= loginUser.getAge() %></h3>
+		<h3>이름 : <%=loginUser.getUserName() %></h3>&nbsp;&nbsp;	<h3>포인트 : <%= loginUser.getPoint() %></h3>
 		<%}else{ %>
 		<h3>이름      &nbsp;&nbsp;</h3><h3>포인트</h3>
 		<%} %>
