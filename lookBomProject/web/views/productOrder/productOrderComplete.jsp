@@ -25,8 +25,8 @@
 저희 룩봄을 이용해주셔서 감사드립니다.</h3>
 <br><br>
 <div align="center">
-<button style="background-color:#666666; color:white; border:0; width:200px; height:40px; border-radius:5px;">다시 쇼핑하러가기</button> &nbsp; &nbsp; &nbsp;
-<button style="background-color:#666666; color:white; border:0; width:200px; height:40px; border-radius:5px;">나의 주문내역 보러가기</button>
+<button onclick="location.href='/lb/index.jsp'" style="background-color:#666666; color:white; border:0; width:200px; height:40px; border-radius:5px; cursor:pointer;">다시 쇼핑하러가기</button> &nbsp; &nbsp; &nbsp;
+<button onclick="location.href='/lb/olist'" style="background-color:#666666; color:white; border:0; width:200px; height:40px; border-radius:5px; cursor:pointer;">나의 주문내역 보러가기</button>
 </div>
 <br><br><br><br>
 <hr>

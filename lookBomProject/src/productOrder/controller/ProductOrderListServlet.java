@@ -57,7 +57,7 @@ public class ProductOrderListServlet extends HttpServlet {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		RequestDispatcher view = null;
-		if(list.size() > 0) {
+		if(list.size() >= 0) {
 			view = request.getRequestDispatcher("views/productOrder/productOrderListView.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("currentPage", currentPage);
@@ -66,6 +66,10 @@ public class ProductOrderListServlet extends HttpServlet {
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("listCount", listCount);
 			
+			view.forward(request, response);
+		} else {
+			view = request.getRequestDispatcher("views/productOrder/productOrderError.jsp");
+			request.setAttribute("message", "주문 내역 출력 실패");
 			view.forward(request, response);
 		}
 	}

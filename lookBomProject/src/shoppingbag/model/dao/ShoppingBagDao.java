@@ -71,5 +71,36 @@ public class ShoppingBagDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	//장바구니 선택된 상품 삭제
+	public int deleteSbProduct(Connection conn, int[] sbdelete) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("delete from shopping_bag where sb_no in(?");
+		for(int i = 2; i<=sbdelete.length; i++) {
+			sb.append(", ?");				
+		}
+		sb.append(")");
+		
+		String query = sb.toString();
+		System.out.println(query);
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			for(int i = 0; i<sbdelete.length; i++) {
+				pstmt.setInt(i+1, sbdelete[i]);
+			}
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;	
 	}	
 }

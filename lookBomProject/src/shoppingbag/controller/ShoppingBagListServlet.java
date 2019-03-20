@@ -36,9 +36,13 @@ public class ShoppingBagListServlet extends HttpServlet {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		RequestDispatcher view = null;
-		if(list.size() > 0) {
+		if(list.size() >= 0) {
 			view = request.getRequestDispatcher("views/shoppingbag/shoppingBagView.jsp");
 			request.setAttribute("list", list);
+			view.forward(request, response);
+		} else {
+			view = request.getRequestDispatcher("views/shoppingbag/shoppingBagError.jsp");
+			request.setAttribute("message", "상품리스트 출력 실패");
 			view.forward(request, response);
 		}
 	}

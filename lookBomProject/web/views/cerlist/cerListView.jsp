@@ -24,13 +24,6 @@ $(function(){
 <table align="center" width= 80% cellspacing="0" border="0"><tr><th align="left"><h1>취소/교환/반품 내역</h1></th></tr></table>
 <hr>
 <table align="center" width= 80% cellspacing="0" border="1">
-	<tr height="70px">
-		<th align="center" bgcolor="#f2f2f2"  width="">접수번호</th>
-		<th align="center" bgcolor="#f2f2f2" width="">접수일</th>
-		<th align="center" bgcolor="#f2f2f2" width="50%">주문내역</th>
-		<th align="center" bgcolor="#f2f2f2"  width="">취소/교환/반품 종류</th>
-		<th align="center" bgcolor="#f2f2f2" width="">접수상태</th>
-	</tr>
 <% if(list.size() == 0){ %>
 	<tr>
 	<th colspan="5">
@@ -41,15 +34,22 @@ $(function(){
 		<hr>
 	</th>
 	</tr>
+	
 <% }else{ %>
+	<tr height="70px">
+		<th align="center" bgcolor="#f2f2f2"  width="">접수번호</th>
+		<th align="center" bgcolor="#f2f2f2" width="">접수일</th>
+		<th align="center" bgcolor="#f2f2f2" width="50%">주문내역</th>
+		<th align="center" bgcolor="#f2f2f2"  width="">취소/교환/반품 종류</th>
+		<th align="center" bgcolor="#f2f2f2" width="">접수상태</th>
+	</tr>
+<% int count = 0; %>	
 	<tr align="center">
-	<a>
 		<td>1</td>
 		<td>2</td>
 		<td>3</td>
 		<td>4</td>
 		<td>5</td>
-	</a>	
 	</tr>
 <% } %>
 </table>

@@ -22,7 +22,7 @@
 		<td>
 			<a href="/lb/views/cerlist/cerListDetailView.jsp">1</a>
 		</td>
-		<td>2</td>
+		<td>2admin으로 가야함</td>
 		<td>3</td>
 		<td>4</td>
 		<td>5</td>

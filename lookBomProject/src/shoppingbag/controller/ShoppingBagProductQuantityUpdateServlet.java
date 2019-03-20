@@ -35,7 +35,6 @@ public class ShoppingBagProductQuantityUpdateServlet extends HttpServlet {
 		
 		int sbno = Integer.parseInt(request.getParameter("sbno"));
 		int productquantity = Integer.parseInt(request.getParameter("productquantity"));
-
 		int result = new ShoppingBagService().updateQuantity(sbno, productquantity);
 		
 		response.setContentType("text/html; charset=UTF-8");
