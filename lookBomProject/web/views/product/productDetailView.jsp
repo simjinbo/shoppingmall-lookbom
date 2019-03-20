@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="productError.jsp"%>
+<%@ page import="product.model.vo.ProductFull, user.model.vo.LookBomUser, java.util.ArrayList" %>
+<%
+    ArrayList<ProductFull> list = (ArrayList<ProductFull>)request.getAttribute("list"); 
+   
+    
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>lookbom</title>
+<title>lookbom</title> 
 <script type="text/javascript" src="/lb/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 function shoppingbag() {
@@ -23,26 +29,31 @@ function order() {
 <tr height="520">
 <th width="600">
 <table width="600" border="1px solid #bcbcbc">
-<tr height="40"><th colspan="2"><div name="brandimage" id="brandimgae"><img width="100%" height="100%" src="/lb/file/product/viva.PNG" ></div></th></tr>
-<tr height="120"><th width="130"><div name="productimage2" id="productimage2"><img width="100%" height="100%" src="/lb/file/product/navyfront.PNG" ></div></th><th width="470" rowspan="4"><div name="productimage1" id="productimage1"><img width="100%" height="100%" src="/lb/file/product/navyfull.PNG" ></div></th></tr>
-<tr height="120"><th><div name="productimage3" id="productimage3"><img width="100%" height="100%" src="/lb/file/product/navyside.PNG" ></div></th></tr>
-<tr height="120"><th><div name="productimage4" id="productimage4"><img width="100%" height="100%" src="/lb/file/product/navyback.PNG" ></div></th></tr>
-<tr height="120"><th><div name="productimage5" id="productimage5"><img width="100%" height="100%" src="/lb/file/product/navyproduct.PNG" ></div></th></tr>
+<tr height="40"><th colspan="2"><div name="brandimage" id="brandimgae"><img width="100%" height="100%" src="/lb/file/product/<%= list.get(0).getBrand_image() %>" ></div></th></tr>
+<tr height="120"><th width="130"><div name="productimage2" id="productimage2"><img width="100%" height="100%" src="/lb/file/product/<%= list.get(0).getProductImage2() %>" ></div></th><th width="470" rowspan="4"><div name="productimage1" id="productimage1"><img width="100%" height="100%" src="/lb/file/product/<%= list.get(0).getProductImage1() %>" ></div></th></tr>
+<tr height="120"><th><div name="productimage3" id="productimage3"><img width="100%" height="100%" src="/lb/file/product/<%= list.get(0).getProductImage3() %>" ></div></th></tr>
+<tr height="120"><th><div name="productimage4" id="productimage4"><img width="100%" height="100%" src="/lb/file/product/<%= list.get(0).getProductImage4() %>" ></div></th></tr>
+<tr height="120"><th><div name="productimage5" id="productimage5"><img width="100%" height="100%" src="/lb/file/product/<%= list.get(0).getProductImage5() %>" ></div></th></tr>
 </table>
 </th>
 <th width="400">
 <table width="400" border="1px solid #bcbcbc">
 <tr height="45"><th colspan="4">상품정보</th></tr>
-<tr height="30"><th >상품명</th><td colspan="3"></td></tr>
-<tr height="30"><th width="100">브랜드</th><td width="100"></td><th width="100">품번</th><td width="100"></td></tr>
-<tr height="30"><th>시즌</th><td></td><th>성별</th><td></td></tr>
-<tr height="30"><th>조회수</th><td></td><th>총판매량</th><td></td></tr>
+<tr height="30"><th >상품명</th><td colspan="3"><%=list.get(0).getProductName() %></td></tr>
+<tr height="30"><th width="100">브랜드</th><td width="100"><%= list.get(0).getBrand() %></td><th width="100">품번</th><td width="100"><%= list.get(0).getProductNo() %></td></tr>
+<tr height="30"><th>시즌</th><td><%= list.get(0).getSeason() %></td><th>성별</th><td><%= list.get(0).getSex() %></td></tr>
+<tr height="30"><th>조회수</th><td><%= list.get(0).getViewCount() %></td><th>총판매량</th><td><%= list.get(0).getTotalSaleRate()%></td></tr>
 <tr height="45"><th colspan="4">가격정보</th></tr>
-<tr height="30"><th>판매가</th><td colspan="3"></td></tr>
-<tr height="30"><th>할인률</th><td colspan="3"></td></tr>
-<tr height="30"><th>할인된 가격</th><td colspan="3"></td></tr>
+<tr height="30"><th>판매가</th><td colspan="3"><%= list.get(0).getProductPrice()%></td></tr>
+<tr height="30"><th>할인률</th><td colspan="3"><%= list.get(0).getDiscountRate() %></td></tr>
+<tr height="30"><th>할인된 가격</th><td colspan="3"><%= (int)(list.get(0).getProductPrice()-(list.get(0).getProductPrice()*list.get(0).getDiscountRate())) %></td></tr>
 <tr height="45"><th colspan="4">색상</th></tr>
-<tr height="60"><th></th><th></th><th></th><th></th></tr>
+<tr height="60">
+<%  for(int i=0;i<list.size();i++){       
+%>
+<th><button style="width:30px;height:30px;background-color:<%=list.get(i).getProductColor()%>;"></button></th>
+<% } %>
+</tr>
 <tr height="50">
 
 <th colspan="2">
@@ -67,11 +78,16 @@ function order() {
 <tr height="230">
 <th>
 <table width="600" border="1px solid #bcbcbc">
-<tr height="40"><th width="150">SIZE</th><th width="150"></th><th width="150"></th><th width="150"></th></tr>
-<tr height="40"><th>S</th><td></td><td></td><td></td></tr>
-<tr height="40"><th>M</th><td></td><td></td><td></td></tr>
-<tr height="40"><th>L</th><td></td><td></td><td></td></tr>
-<tr height="40"><th>XL</th><td></td><td></td><td></td></tr>
+<% String[] sizecontents = new String[25];
+ sizecontents = list.get(0).getSizeContents().split(",");	
+ 
+%>
+<tr height="40"><th width="150">SIZE</th><th width="150"><%= sizecontents[0]%></th><th width="150"><%=sizecontents[1]%></th><th width="150"><%=sizecontents[2]%></th></tr>
+<tr height="40"><th><%=sizecontents[3]%></th><td><%=sizecontents[4]%></td><td><%=sizecontents[5]%></td><td><%=sizecontents[6]%></td></tr>
+<%-- --%><tr height="40"><th><%=sizecontents[7]%></th><td><%=sizecontents[8]%></td><td><%=sizecontents[9]%></td><td><%=sizecontents[10]%></td></tr>
+<tr height="40"><th><%=sizecontents[11]%></th><td><%=sizecontents[12]%></td><td><%=sizecontents[13]%></td><td><%=sizecontents[14]%></td></tr>
+<tr height="40"><th><%=sizecontents[15]%></th><td><%=sizecontents[16]%></td><td><%=sizecontents[17]%></td><td><%=sizecontents[18]%></td></tr> 
+
 </table>
 </th>
 <th>

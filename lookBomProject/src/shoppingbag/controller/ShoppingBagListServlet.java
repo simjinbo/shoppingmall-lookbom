@@ -32,7 +32,7 @@ public class ShoppingBagListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<ShoppingBagList> list = new ShoppingBagService().shoppingBagList();
+		ArrayList<ShoppingBagList> list = new ShoppingBagService().selectSbList();
 		
 		response.setContentType("text/html; charset=UTF-8");
 		RequestDispatcher view = null;

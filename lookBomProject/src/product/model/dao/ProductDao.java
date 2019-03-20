@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import product.model.vo.Product;
 import product.model.vo.ProductDetail;
+import product.model.vo.ProductFull;
 
 public class ProductDao {
 
@@ -24,68 +25,9 @@ public class ProductDao {
 		return null;
 	}
 
-	public int insertProdcut(Connection conn, Product product) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = "INSERT INTO PRODUCT VALUES(SEQ_PRODUCT_NO.NEXTVAL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DEFAULT, DEFAULT, DEFAULT)";
-				
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, product.getProductName());
-			pstmt.setString(2, product.getProductType());
-			pstmt.setString(3, product.getBrand());
-			pstmt.setString(4, product.getBrandImage());
-			pstmt.setString(5, product.getSeason());
-			pstmt.setString(6, product.getSex());
-			pstmt.setInt(7, product.getProductPrice());
-			pstmt.setDouble(8, product.getDiscountRate());
-			pstmt.setString(9, product.getSizeCategory());
-			pstmt.setString(10, product.getSizeContents());
-			pstmt.setString(11, product.getMoreInto());
-		
-			result = pstmt.executeUpdate();
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
+	
 
-		return result;
-	}
-
-	public int insertProdcutDetail(Connection conn, ProductDetail productDetail, int productNo) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = "INSERT INTO PRODUCT_DETAIL VALUES(SEQ_PRODUCT_DETAIL_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, Default, ?)";
-				
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, productDetail.getProductColor());
-			pstmt.setString(2, productDetail.getProductImage1());
-			pstmt.setString(3, productDetail.getProductImage2());
-			pstmt.setString(4, productDetail.getProductImage3());
-			pstmt.setString(5, productDetail.getProductImage4());
-			pstmt.setString(6, productDetail.getProductImage5());
-			pstmt.setInt(7, productDetail.getSsizeQuantity());
-			pstmt.setInt(8, productDetail.getMsizeQuantity());
-			pstmt.setInt(9, productDetail.getLsizeQuantity());
-			pstmt.setInt(10, productDetail.getXlsizeQuantity());
-			pstmt.setInt(11, productDetail.getSsizeQuantity()+productDetail.getMsizeQuantity()+productDetail.getLsizeQuantity()+productDetail.getXlsizeQuantity());
-			pstmt.setInt(12, productNo);
-		
-			result = pstmt.executeUpdate();
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
+	
 
 	public int updateProdcut(Connection conn, Product product) {
 		// TODO Auto-generated method stub
@@ -107,31 +49,92 @@ public class ProductDao {
 		return 0;
 	}
 
-	public int getProductNo(Connection conn, String productName) {
+
+
+	public int addViewCount(Connection conn, int productNo) {
+		int result = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		int productNo=0;
 		
-		String query = "SELECT PRODUCT_NO FROM PRODUCT WHERE PRODUCT_NAME = ?";
+		String query = "update product set view_count = view_count + 1 where product_no = ?";
 		
 		try {
-			pstmt = conn.prepareStatement(query);			
-			pstmt.setString(1, productName);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, productNo);
 			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-			  productNo = rset.getInt("product_no");
-			}
-			
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<ProductFull> selectProduct(Connection conn, int productNo) {		
+		ArrayList<ProductFull> list  = new ArrayList<ProductFull>();				
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select product_no, product_name, product_type, brand, brand_image, season, sex, product_price, discount_rate,"
+		+" size_category, size_contents, more_info, view_count, resiter, product_like,"
+		+" product_detail_no, product_color, product_image1, product_image2, product_image3, product_image4, product_image5,"
+		+" ssize_quantity, msize_quantity, lsize_quantity, xlsize_quantity, total_enter_quantity, total_sales_rate"
+		+" from product"
+		+" join product_detail using (product_no)"
+		+" where product_no = ?";
+		
+		try {
+		  pstmt = conn.prepareStatement(query);
+		  pstmt.setInt(1, productNo);
+		  
+		  rset = pstmt.executeQuery();
+		  
+		  while(rset.next()) {
+			  ProductFull productFull = new ProductFull();
+			  
+			  productFull.setProductNo(rset.getInt("product_no"));
+			  productFull.setProductName(rset.getString("product_name"));
+			  productFull.setProductType(rset.getString("product_type"));
+			  productFull.setBrand(rset.getString("brand"));
+			  productFull.setBrand_image(rset.getString("brand_image"));
+			  productFull.setSeason(rset.getString("season"));
+			  productFull.setSex(rset.getString("sex"));
+			  productFull.setProductPrice(rset.getInt("product_price"));
+			  productFull.setDiscountRate(rset.getDouble("discount_rate"));
+			  productFull.setSizeCategory(rset.getString("size_category"));
+			  productFull.setSizeContents(rset.getString("size_contents"));
+			  productFull.setMoreInto(rset.getString("more_info"));
+			  productFull.setViewCount(rset.getInt("view_count"));			  
+			  productFull.setResiter(rset.getDate("resiter"));
+			  productFull.setProductLike(rset.getInt("product_like"));		
+			  productFull.setProductDetailNo(rset.getInt("product_detail_no"));
+			  productFull.setProductColor(rset.getString("product_color"));
+			  productFull.setProductImage1(rset.getString("product_image1"));
+			  productFull.setProductImage2(rset.getString("product_image2"));
+			  productFull.setProductImage3(rset.getString("product_image3"));
+			  productFull.setProductImage4(rset.getString("product_image4"));
+			  productFull.setProductImage5(rset.getString("product_image5"));			  
+			  productFull.setSsizeQuantity(rset.getInt("ssize_quantity"));
+			  productFull.setMsizeQuantity(rset.getInt("msize_quantity"));
+			  productFull.setLsizeQuantity(rset.getInt("lsize_quantity"));
+			  productFull.setXlsizeQuantity(rset.getInt("xlsize_quantity"));
+			  productFull.setTotalEnterQuantity(rset.getInt("total_enter_quantity"));
+			  productFull.setTotalSaleRate(rset.getInt("total_sales_rate"));
+		
+			  list.add(productFull);
+		  }
+		  
+		} catch(Exception e) {
+			 e.printStackTrace();
 		}finally {
 			close(rset);
 			close(pstmt);
 		}
 		
-		return productNo;
+		return list;
 	}
 
+	
+	
 }
