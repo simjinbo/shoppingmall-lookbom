@@ -18,7 +18,7 @@
 <tr>
 <th width="200" height="230">
 <table align ="center" width="180" border="1px solid #bcbcbc">
-<tr><td width="180" height="160"><div style="cursor:pointer" onclick ="window.location.href='/lb/pdetail?pno=17&page=1';"><img width="100%" height="100%" src="/lb/file/product/navyproduct.PNG" ></div></td></tr>
+<tr><td width="180" height="160"><div style="cursor:pointer" onclick ="window.location.href='/lb/pdetail?pno=30&page=1';"><img width="100%" height="100%" src="/lb/file/product/navyproduct.PNG" ></div></td></tr>
 <tr><td width="180" height="20">[브랜드]</td></tr>
 <tr><td width="180" height="20">[상품명][컬러]</td></tr>
 <tr><td width="180" height="15">[할인률][가격]</td></tr>

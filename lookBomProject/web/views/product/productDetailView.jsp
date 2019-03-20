@@ -3,8 +3,7 @@
 <%@ page import="product.model.vo.ProductFull, user.model.vo.LookBomUser, java.util.ArrayList" %>
 <%
     ArrayList<ProductFull> list = (ArrayList<ProductFull>)request.getAttribute("list"); 
-   
-    
+
 %>
 <!DOCTYPE html>
 <html>
@@ -14,18 +13,23 @@
 <script type="text/javascript" src="/lb/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 function shoppingbag() {
-	location.href = "/lb/views/order/productOrder.jsp?productDetailNo=1&size=1&quantity=1";
+location.href ="/lb/pshoppingbag?pno="+$("#pno").val()+"&pdno="+$("#pdno").val()
+		      +"&size="+$("#size").val()+"&quantity="+$("#quantity").val();
 	}
 function order() {
-	location.href = "/lb/views/order/productOrder.jsp?productDetailNo=1&size=1&quantity=1";
-	}
+	location.href = "/lb/poder?pno="+$("#pno").val()+"&pdno="+$("#pdno").val()
+    +"&size="+$("#size").val()+"&quantity="+$("#quantity").val();
+	} 
+
 </script>
 </head>
 <body>
 <h2 align="center">상품상세페이지 입니다.</h2>
 
 <table align="center" width="1000" border="1px solid #bcbcbc">
-</form name="productoption" id="productoption" method="get" >
+<form name="productoption" id="productoption" method="get" >
+<input type="hidden"  name="pno"  id="pno"  value="<%=list.get(0).getProductNo()%>">
+<input type="hidden"  name="pdno"  id="pdno" value="<%=list.get(0).getProductDetailNo()%>">
 <tr height="520">
 <th width="600">
 <table width="600" border="1px solid #bcbcbc">
@@ -51,40 +55,40 @@ function order() {
 <tr height="60">
 <%  for(int i=0;i<list.size();i++){       
 %>
-<th><button style="width:30px;height:30px;background-color:<%=list.get(i).getProductColor()%>;"></button></th>
+<th><button name="productcolor"  id="productcolor" style="width:30px;height:30px;background-color:<%=list.get(i).getProductColor()%>;"></button></th>
 <% } %>
 </tr>
 <tr height="50">
-
-<th colspan="2">
-<select name="size" id="size" >
-       <option value="">사이즈</option>
-       <option value="s">S</option>
-       <option value="m">M</option>
-       <option value="l">L</option>
-       <option value="xl">XL</option>
-</select>
+<th colspan="2">사이즈 :
+<input type="text" name="size" id="size" list="sizelist" size="10" >
+       <datalist id="sizelist">      
+<%  String[] sizecategory = list.get(0).getSizeCategory().split(",");
+       for(int i=0;i<sizecategory.length;i++){
+ %>       
+       <option value="<%= sizecategory[i]%>"></option>     
+<% } %>       
+</datalist>
 </th>
 <th colspan="2">수량 : 
-<input type="number" name="quantiry" id="quantiry" min="1" max="100" step="1" value="1">
+<input type="number" name="quantity" id="quantity" min="1" max="100" step="1" value="1">
 </th>
 </tr>
 </form>
-<tr height="50"><th colspan="2"><button onclick="shoppingbag();">장바구니</th>
-<th colspan="2"><button onclick="shoppingbag();">주문하기</th></tr>
+<tr height="50"><th colspan="2"><button type="submit" onclick="shoppingbag();">장바구니</th>
+<th colspan="2"><button onclick="order();">주문하기</th></tr>
+
 </table>
 </th>
 </tr>
 <tr height="230">
 <th>
 <table width="600" border="1px solid #bcbcbc">
-<% String[] sizecontents = new String[25];
- sizecontents = list.get(0).getSizeContents().split(",");	
+<% String[] sizecontents = list.get(0).getSizeContents().split(",");	
  
 %>
 <tr height="40"><th width="150">SIZE</th><th width="150"><%= sizecontents[0]%></th><th width="150"><%=sizecontents[1]%></th><th width="150"><%=sizecontents[2]%></th></tr>
 <tr height="40"><th><%=sizecontents[3]%></th><td><%=sizecontents[4]%></td><td><%=sizecontents[5]%></td><td><%=sizecontents[6]%></td></tr>
-<%-- --%><tr height="40"><th><%=sizecontents[7]%></th><td><%=sizecontents[8]%></td><td><%=sizecontents[9]%></td><td><%=sizecontents[10]%></td></tr>
+<tr height="40"><th><%=sizecontents[7]%></th><td><%=sizecontents[8]%></td><td><%=sizecontents[9]%></td><td><%=sizecontents[10]%></td></tr>
 <tr height="40"><th><%=sizecontents[11]%></th><td><%=sizecontents[12]%></td><td><%=sizecontents[13]%></td><td><%=sizecontents[14]%></td></tr>
 <tr height="40"><th><%=sizecontents[15]%></th><td><%=sizecontents[16]%></td><td><%=sizecontents[17]%></td><td><%=sizecontents[18]%></td></tr> 
 
@@ -93,7 +97,7 @@ function order() {
 <th>
 <table width="400" border="1px solid #bcbcbc">
 <tr height="45"><th>추가정보</th></tr>
-<tr height="160"><td></td></tr>
+<tr height="160"><td><%= list.get(0).getMoreInto()%></td></tr>
 </table>
 </th>
 </tr>

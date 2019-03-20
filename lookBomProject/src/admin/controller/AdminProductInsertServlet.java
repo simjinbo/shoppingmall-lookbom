@@ -118,17 +118,17 @@ public class AdminProductInsertServlet extends HttpServlet {
 		 product.setProductPrice(Integer.parseInt(mrequest.getParameter("productprice")));
 		 product.setDiscountRate(Double.parseDouble(mrequest.getParameter("discountrate")));
 		 
-			String[] sizecategory = mrequest.getParameterValues("sizecategory");	
-		
+			String[] sizecategory = mrequest.getParameterValues("sizecategory");			
 			product.setSizeCategory(String.join(",", sizecategory));
+			
 			String[] sizecontents = mrequest.getParameterValues("sizecontents");
 			
 		    for(int i =0; i<sizecontents.length;i++) {
-			if(sizecontents[i]==null)
+			if(sizecontents[i].isEmpty())
 				sizecontents[i]=" ";
 			    System.out.println(sizecontents[i]);
-		    }				
-		    
+		    }			   
+		  
 		   product.setSizeContents(String.join(",", sizecontents));
 		   product.setMoreInto(mrequest.getParameter("moreinfo"));	
 		   
