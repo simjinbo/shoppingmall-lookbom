@@ -7,7 +7,7 @@
 <title>lookBom</title>
 </head>
 <body>
-<h1>상품 주문 서비스 오류 발생</h1>
+<h1>장바구니 서비스 오류 발생</h1>
 <% if(exception != null){ %>
 <h3>JSP 예외 발생 : <%= exception.getMessage() %></h3>
 <h3>예외클래스명 확인 : <%= exception.getClass().getName() %></h3>
