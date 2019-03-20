@@ -16,6 +16,7 @@
 <title>lookBom</title>
 <script type="text/javascript" src="/lb/resources/js/jquery-3.3.1.min.js"></script>
 
+<!-- 버튼 출력 -->
 <script type="text/javascript">
 function ordercancel(){
 	var message = confirm("정말로 취소하시겠습니까?");
@@ -30,7 +31,7 @@ function exchangeReturn(){
 		location.href='/lb/clist';
 		$("#review").first().show();
 	}else{
-		alert("취소되었습니다.")
+
 	}
 }
 
@@ -58,16 +59,9 @@ function purchaseConfirm(){
 <body>
 <table align="center" width= 80% cellspacing="0" border="0"><tr><th align="left"><h1>주문 내역</h1></th></tr></table>
 <hr><br>
+
+<!-- 주문내역 출력 -->
 <table align="center" width= 80% cellspacing="0" border="1">
-	<tr height="70px">
-		<th align="center" bgcolor="#f2f2f2"  width="">주문번호</th>
-		<th align="center" bgcolor="#f2f2f2" width="">주문일</th>
-		<th colspan="2" align="center" bgcolor="#f2f2f2" width="40%">주문내역</th>
-		<th align="center" bgcolor="#f2f2f2"  width="">총 결제금액</th>
-		<th align="center" bgcolor="#f2f2f2" width="">진행상태</th>
-		<th align="center" bgcolor="#f2f2f2" width="">구매결정</th>
-		<th align="center" bgcolor="#f2f2f2" width="">리뷰남기기</th>
-	</tr>
 <% if(list.size() == 0){ %>
 	<tr>
 	<th colspan="8">
@@ -79,6 +73,16 @@ function purchaseConfirm(){
 	</th>
 	</tr>
 <% }else{ %>
+	<tr height="70px">
+		<th align="center" bgcolor="#f2f2f2"  width="">주문번호</th>
+		<th align="center" bgcolor="#f2f2f2" width="">주문일</th>
+		<th colspan="2" align="center" bgcolor="#f2f2f2" width="40%">주문내역</th>
+		<th align="center" bgcolor="#f2f2f2"  width="">총 결제금액</th>
+		<th align="center" bgcolor="#f2f2f2" width="">진행상태</th>
+		<th align="center" bgcolor="#f2f2f2" width="">구매결정</th>
+		<th align="center" bgcolor="#f2f2f2" width="">리뷰남기기</th>
+	</tr>
+	<% int count = 0; %>
 	<% for(ProductOrderList polist : list){ %>
 	<tr>
 		<th>
@@ -102,19 +106,20 @@ function purchaseConfirm(){
 		</th>
 		<th><%= polist.getOrderTotalPrice()  %>원</th>
 		<th><%= polist.getOrderProgress()  %></th>
-		<th width="100px" height="100px">
-			<input type="button" value="구매취소" id="oc" onclick="ordercancel()" style="background-color:#666666; color:white; border:0; height:25px; width:80px; border-radius:5px;">
-			<input type="button" value="교환/반품" id="er" onclick="exchangeReturn()" style="background-color:#666666; color:white; border:0; height:25px; width:80px; border-radius:5px;">	
+		<th class="line" width="100px" height="100px">
+			<input type="button" value="구매취소" id="oc<%=count%>" onclick="ordercancel()" style="background-color:#666666; color:white; border:0; height:25px; width:80px; border-radius:5px; cursor:pointer;"><br><br>
+			<input type="button" value="교환/반품" id="er<%=count%>" onclick="exchangeReturn()" style="background-color:#666666; color:white; border:0; height:25px; width:80px; border-radius:5px; cursor:pointer;"><br><br>	
 			<% if( polist.getOrderProgress().equals("배송완료")) { %>
-			<input type="button" value="구매확정" id="pc" onclick="purchaseConfirm()" style="background-color:#666666; color:white; border:0; height:25px; width:80px; border-radius:5px;">
+			<input type="button" value="구매확정" id="pc<%=count%>" onclick="purchaseConfirm()" style="background-color:#666666; color:white; border:0; height:25px; width:80px; border-radius:5px; cursor:pointer;">
 			<% } %>
 		</th>
 		<th>
 			<% if( polist.getOrderDecision().equals("구매확정")) { %>
-			<input type="button" value="리뷰" id="review" onclick="location.href='/lb/rwrite'" style="background-color:#666666; color:white; border:0; height:25px; width:50px; border-radius:5px;">
+			<input type="button" value="리뷰" id="review" onclick="location.href='/lb/rwrite'" style="background-color:#666666; color:white; border:0; height:25px; width:50px; border-radius:5px; cursor:pointer;">
 			<% } %>
 		</th>
 	</tr>
+	<% count++; %>
 	<% } %>
 </table>
 <br><br>

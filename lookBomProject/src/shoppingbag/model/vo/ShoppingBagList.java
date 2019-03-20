@@ -16,7 +16,7 @@ public class ShoppingBagList implements Serializable {
 	private String sbProductSize;	//상품별사이즈
 	private double discountRate;	//할인율
 	private int productPrice;		//상품가격
-	private int sbProductQuantity;	 //상품별수량
+	private int sbProductQuantity;	//상품별수량
 	private int sbTotalPrice;		//총결제금액
 		
 	public ShoppingBagList() {}

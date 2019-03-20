@@ -33,6 +33,19 @@ public class ShoppingBagService {
 		close(conn);
 		return result;
 	}
+	
+	//장바구니 선택된 상품 삭제
+	public int deleteSbProduct(int[] sbdelete) {
+		Connection conn = getConnection();
+		int result = sbdao.deleteSbProduct(conn, sbdelete);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;		
+	}
 
 
 }
