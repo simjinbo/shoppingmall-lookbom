@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
 <style type="text/css">
 	body{margin:0; padding:0;}
 	#sidebar{
@@ -66,6 +67,12 @@
 <p>line
 
 <p>line
+=======
+</head>
+<body>
+<%@ include file="../common/header.jsp" %>
+<br><br><br><br><br><br><br><br><br><br>
+>>>>>>> origin/oh
 
  <%@ include file= "../common/footer.jsp" %>
 </body>
