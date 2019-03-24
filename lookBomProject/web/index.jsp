@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>     
+    pageEncoding="UTF-8"%>
+    <%@page import="user.model.vo.LookBomUser" %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -177,11 +179,10 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 </style>
 </head>
 <body style="margin:0px; padding:0px;">
-<%@ include file="views/common/header.jsp" %>
+ <%@ include file="views/common/header.jsp" %>
 <br><br><br><br><br><br><br><br><br><br>
 
-
-
+ 
 <ul class="slides">
     <input type="radio" name="radio-btn" id="img-1" checked />
     <li class="slide-container">
@@ -258,6 +259,21 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
       <label for="img-6" class="nav-dot" id="img-dot-6"></label>
     </li>
 </ul>
+<!-- 메인 포스트 수정버튼 관리자일때만 -->
+<%-- <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+<button value="수정하기"><a href="#"></a></button>
+<%} %> --%>
+<button value="pupBtn"><a href="views/adminMain/mainPostUpdate.jsp">수정하기</a></button>
+
+<a href="views/common/header.jsp">헤더</a>
+<a href="views/common/adminHeader.jsp">관리자헤더</a>
+<a href="views/side/side1.jsp">사이드1</a>
+<a href="views/side/side2.jsp">사이드2</a>
+<a href="views/side/side3.jsp">사이드3</a>
+<a href="views/side/side4.jsp">사이드4</a>
+<a href="views/side/side5.jsp">사이드5</a>
+<br>
+<br>
 
 
 <!-- Best 남/여 구분버튼 -->
@@ -267,8 +283,8 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 	<td style="width:5vw;"></td>
 	<td style="width:3vw;"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEST</h1></td>
 	<td style="width:1vw;"></td>
-	<td style="width:3vw;"><a class="man" >MEN</a></td>
-	<td style="width:3vw;"><a class="women">WOMEN</a></td>
+	<td style="width:3vw;"><a class="man" onclick="menList();">MEN</a></td>
+	<td style="width:3vw;"><a class="women" onclick="womenList();">WOMEN</a></td>
 	<td></td>
 </tr>
 </table>

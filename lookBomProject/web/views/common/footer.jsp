@@ -34,7 +34,7 @@
 
 <div>
 <hr>
-<img src="/semi/resources/images/로고2.png" style="width:40px;height:40px;float:left;"><h1>1644-1234</h1>
+<img src="/lb/resources/images/로고2.png" style="width:40px;height:40px;float:left;"><h1>1644-1234</h1>
 <p style="font-size:small">AM 10:00 ~ PM 05:00<BR>
 Off-Time PM 12:00 ~ PM 2:00<BR>
 DAY OFF (SATURDAY,SUNDAY,HOLIDAY)

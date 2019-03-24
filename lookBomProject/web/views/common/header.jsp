@@ -1,31 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-    <%@ page import = "user.model.vo.LookBomUser, search.model.vo.Search" %>
-=======
-<%--     <%@ page import = "member.model.vo.Member, search.model.vo.Search" %>
->>>>>>> origin/oh
+  <%@ page import = "user.model.vo.LookBomUser, search.model.vo.Search" %>
     <%
-     LookBomUser loginUser = (LookBomUser)session.getAttribute("loginUser");
-    Search search = (Search)session.getAttribute("search");
-    %> --%>
+    LookBomUser loginUser = (LookBomUser)session.getAttribute("loginUser");
+/*     Search search = (Search)session.getAttribute("search"); */
+    %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<script src="resources/js/jquery-3.3.1.min.js"></script>
+<script src="/lb/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-		function show(){
+		function click1(){
+			if(loginUser != null){
+				/* location.href = "/lb/views/productOrder/productOrder.jsp";
+					console.log(); */
+				location.href = "/lb/views/user/login.jsp";
+				alert("로그인이 필요한 서비스 입니다.");
+				console.log();
+			}else {
+				
+				 location.href = "/lb/views/productOrder/productOrder.jsp";
+					console.log()
+			};
+			console.log();
+		};
+		 function show(){
 			var max = document.getElementById("searchmax");
 			max.style.display = "inline-block";
-		};
-		window.onload = function() {
+		}
+		/* window.onload = function() {
 			document.getElementById('close').onclick = function() { 
 				var max = document.getElementById("searchmax");
 				max.style.display = "none"; } 
-			};
+			};  */
+			$("#close").click(function(){
+				var max = document.getElementById("searchmax");
+				max.style.display = "none";
+			})
 	/*  $(window).scroll(function(){
 		var scroll = $(window).scrollTop();
 		if(scroll != 0){
@@ -38,6 +52,7 @@
 	});  */
 	 $(window).scroll(function(){
 			var scroll = $(window).scrollTop();
+			console.log(scroll);
 			if(scroll > 0){
 			$(".header").addClass("change1");
 			$(".hdheight").addClass("change");
@@ -62,15 +77,15 @@
 	 opacity:0.7;
 	}
 	.header {
-	width:100%;
+	width:100vw;
 	position:fixed;
 	z-index:10;
-	height:150px;
+	height:15vh;
 
 	}
 	.hdheight{
 	background: white;
-	height:170px;
+	height:20vh;
 	}
 	.topbar {
 	width:100%;
@@ -80,14 +95,14 @@
 	padding:  0px;
 	}
 	.logo2{
-	width:100px;
-	height:100px;
+	width:6vw;
+	height:10vh;
 	float:left;
 	padding : 10px;
 	}
 	.logo{
-	width:200px;
-	height:50px;
+	width:12vw;
+	height:5vh;
 	position:relative;
 	top:10px;
 	left:10px;
@@ -136,7 +151,7 @@
  	#navi li ul{
  position:absolute;
  opacity:0;
- width:180px;
+ width:14vw;
  box-shadow:0 10px 20px 0 rgba(0,0,0,0.2);
  -webkit-boix-shadow:0 12px 25px 0 rgba(0,0,0,0.2);
  }
@@ -152,7 +167,7 @@
  }
  	#navi li:hover ul li{
  padding:10px 10;
- height:50px;
+ height:5vh;
  line-height:40px;
  /* background:rgba(0,0,0,0.4); */
  background:white;
@@ -165,15 +180,18 @@
  color:black;
  font-size:small;
  }
+ #mybar:hover{
+ cursor:pointer;
+ }
 	 #mybar img{
- width:15px;
- height:15px;
+ width:1vw;
+ height:2vh;
  padding-top:15px;
  padding-left:15px;
  }
 	.myBtn img{
-		width:50px;
- 	height:50px;
+		width:3vw;
+ 	height:5vh;
 
  }
  	.myBtn{
@@ -242,7 +260,7 @@
             width: 100vw; /* Full width */
             height: 100vh; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgb(0,0,0); /* Falsemiack color */
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
            
 	}
@@ -292,57 +310,60 @@
 <header class="header">
 <div class="hdheight">
 <div class="topbar">
-	<div class="topbar" id="loginUser" style="background: pink; height: 50px;; width: 300px;"><!-- 로그인시 유저명이랑 포인트  -->
-<<<<<<< HEAD
-		<%if(loginUser != null) {%>
-		<h3>이름 : <%=loginUser.getUserName() %></h3>&nbsp;&nbsp;	<h3>포인트 : <%= loginUser.getPoint() %></h3>
-=======
-	<%-- 	<%if(loginUser != null) {%>
-		<h3>이름 : <%=loginUser.getUserName() %></h3>&nbsp;&nbsp;	<h3>포인트 : <%= loginUser.getAge() %></h3>
->>>>>>> origin/oh
-		<%}else{ %>
-		<h3>이름      &nbsp;&nbsp;</h3><h3>포인트</h3>
-		<%} %> --%>
+	<div class="topbar" id="loginUser" style="background: black; height: 50px;; width: 300px;"><!-- 로그인시 유저명이랑 포인트  -->
+ 	 	 <%if(loginUser != null) {%>
+		<h3>이름 : <%=loginUser.getUserName() %>&nbsp;&nbsp;&nbsp;&nbsp;</h3><h3>포인트 : <%= loginUser.getPoint() %></h3>
+		<%--  <%}else { %>
+		<h3>이름<%=loginUser.getUserName() %>&nbsp;&nbsp;</h3><h3>관리자</h3> --%>
+		<%} %>
 	</div>
 </div>
 <div class ="top_fix_zone" id="topbar1">
-<a href="#" ><img src="/semi/resources/images/로고2.png" id="logo2" class="logo2"></a>
-<a href="#"><img src="/semi/resources/images/로고.png" id="logo" class="logo"></a>
+<a href="#" ><img src="/lb/resources/images/로고2.png" id="logo2" class="logo2"></a>
+<a href="#"><img src="/lb/resources/images/로고.png" id="logo" class="logo"></a>
 
 <div  style="width:25%;height:130px;  float:right;">
-<table>
 <tr>
-<td><a id="mybar" href="#"><img src="/semi/resources/images/로그인.jpg">로그인</a></td>
-<td><a id="mybar" href="#"><img src="/semi/resources/images/회원가입.jpg">회원가입</a></td>
-<td><a id="mybar" href="#"><img src="/semi/resources/images/장바구니.jpg">장바구니</a></td>
-<td><a id="mybar" href="#"><img src="/semi/resources/images/마이페이지.jpg">마이페이지</a></td>
+ <%if(loginUser != null){ %>
+<td><a id="mybar" href="/lb/logout"><img src="/lb/resources/images/로그인.jpg">로그아웃</a></td>
+<%}else{ %>
+<td><a id="mybar" href="/lb/views/user/login.jsp"><img src="/lb/resources/images/로그인.jpg">로그인</a></td>
+
+<%} %>
+<td><a id="mybar" href=""><img src="/lb/resources/images/마이페이지.jpg">마이페이지</a></td> 
+<td><a id="mybar" class="click1" onclick="click1()" ><img src="/lb/resources/images/장바구니.jpg">장바구니</a></td>
+ <%if(loginUser != null){ %>
+ <td><a id="mybar" href="/lb/views/user/membership.jsp"><img src="/lb/resources/images/회원가입.jpg">게시판</a></td>
+ <%}else{ %>
+<td><a id="mybar" href="/lb/views/user/membership.jsp"><img src="/lb/resources/images/회원가입.jpg">회원가입</a></td>
+<%} %>
 </tr>
-</table>
+
 <!-- 실시간 랭킹바  -->
 <table>
 <tr>
 <th>
 <select id="rank" name="rank">
-	<option id="rank1">1. <%=1%></option>
-	<option id="rank2">2. <%=2%></option>
-	<option id="rank3">3. <%=3 %></option>
-	<option id="rank4">4. <%=4%></option>
-	<option id="rank5">5. <%=5 %></option>
-	<option id="rank6">6. <%=6 %></option>
-	<option id="rank7">7. <%=7 %></option>
-	<option id="rank8">8. <%=8 %></option>
-	<option id="rank9">9. <%=9 %></option>
-	<option id="rank10">10. <%=0 %></option>
+	<option id="rank1">1. </option>
+	<option id="rank2">2. </option>
+	<option id="rank3">3. </option>
+	<option id="rank4">4. </option>
+	<option id="rank5">5. </option>
+	<option id="rank6">6. </option>
+	<option id="rank7">7. </option>
+	<option id="rank8">8. </option>
+	<option id="rank9">9. </option>
+	<option id="rank10">10. </option>
 </select>
 </th>
-<th><button class="myBtn"  onclick="show();"><img src="/semi/resources/images/검색.jpg"></button></th>
+<th><button class="myBtn"  onclick="show();"><img src="/lb/resources/images/검색.jpg"></button></th>
 <tr>
 </table>
 </div>
 
 <!--  메뉴 바 -->
 <ul id="navi">	
-<li class="on"><a class="menu1" href="/semi/views/side/side1.jsp">MEN</a>
+<li class="on"><a class="menu1" href="/lb/views/side/side1.jsp">MEN</a>
 	<ul>
 		<li><a href="#">1</a></li>
 		<li><a href="#">2</a></li>
@@ -350,7 +371,7 @@
 		<li><a href="#">4</a></li>
 	</ul>
 </li>
-<li><a class="menu2" href="/semi/views/side/side2.jsp">WOMEN</a>
+<li><a class="menu2" href="/lb/views/side/side2.jsp">WOMEN</a>
 <ul>
 		<li><a href="#">1</a></li>
 		<li><a href="#">2</a></li>
@@ -358,7 +379,7 @@
 		<li><a href="#">4</a></li>
 	</ul>
 </li>
-<li><a class="menu3" href="/semi/views/side/side3.jsp">BRAND</a>
+<li><a class="menu3" href="/lb/views/side/side3.jsp">BRAND</a>
 	<ul>
 		<li><a href="#">1</a></li>
 		<li><a href="#">2</a></li>
@@ -366,7 +387,7 @@
 		<li><a href="#">4</a></li>
 	</ul>
 </li>
-<li><a class="menu4" href="/semi/views/side/side4.jsp">ACC</a>
+<li><a class="menu4" href="/lb/views/side/side4.jsp">ACC</a>
 	<ul>
 		<li><a href="#">1</a></li>
 		<li><a href="#">2</a></li>
@@ -374,7 +395,7 @@
 		<li><a href="#">4</a></li>
 	</ul>
 </li>
-<li><a class="menu5" href="/semi/views/side/side5.jsp">BRAND</a>
+<li><a class="menu5" href="/lb/views/side/side5.jsp">BRAND</a>
 	<ul>
 		<li><a href="#">1</a></li>
 		<li><a href="#">2</a></li>
