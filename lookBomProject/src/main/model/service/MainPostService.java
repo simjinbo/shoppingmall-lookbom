@@ -1,26 +1,37 @@
 package main.model.service;
 
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.getConnection;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
 import main.model.dao.MainPostDao;
 import main.model.vo.MainPost;
 
-import static common.JDBCTemplate.*;
-
-import java.sql.Connection;
-
 public class MainPostService {
+	ArrayList<MainPost> list = new ArrayList<>();
+
 	public MainPostService() {}
 	private MainPostDao mdao = new MainPostDao();
-	public MainPost insertPost(String url,String img) {
+	public int insertPost(MainPost mpost) {
+		
 		Connection conn = getConnection();
-		MainPost mpost = mdao.insertPost(conn, url, img);
+		int result = mdao.insertPost(conn, mpost);
 		close(conn);
-		return mpost;
+		return result;
 	}
-	public MainPost deletePost(String url,String img) {
+
+	public ArrayList<MainPost> selectPost() {
 		Connection conn = getConnection();
-		MainPost mpost = mdao.deletePost(conn, url, img);
+		ArrayList<MainPost> list = mdao.selectPost(conn);
 		close(conn);
-		return mpost;
+		return list;
+	}
+	public int deletePost(String rnum) {
+		Connection conn = getConnection();
+		int result = mdao.deletePost(conn,rnum);
+		return result;
 	}
 	
 	

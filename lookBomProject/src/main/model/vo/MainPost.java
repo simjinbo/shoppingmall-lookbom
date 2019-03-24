@@ -4,10 +4,11 @@ public class MainPost {
 	public int postNo;
 	public String url;
 	public String img;
-	public String category;
+	public int category;
 	public String content;
 	
-	public MainPost(int postNo, String url, String img, String category, String content) {
+	public MainPost() {}
+	public MainPost(int postNo, String url, String img, int category, String content) {
 		super();
 		this.postNo = postNo;
 		this.url = url;
@@ -33,10 +34,10 @@ public class MainPost {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	public String getCategory() {
+	public int getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(int category) {
 		this.category = category;
 	}
 	public String getContent() {
